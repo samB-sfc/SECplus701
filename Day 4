@@ -1,0 +1,106 @@
+===== DAY 4 =====
+
+http://codeshare.io/5gV9wN
+
+RADIUS AAA [ shell:priv-lvl=15 ]
+
+###Wireless
+
+!@Cisco
+conf t
+ username admin privilege 15 secret pass
+ aaa new-model
+ radius server WINRAD
+  address ipv4 208.8.8.8 auth-port 1812 acct-port 1813
+  key C1sc0123
+  exit
+ aaa group server radius RADGROUP
+  server name WINRAD
+  exit
+ aaa authentication login default group RADGROUP local
+ aaa authorization exec default group RADGROUP local
+ line vty 0 4
+  login authentication default
+ end
+
+https://codeshare.io/aJDM3q
+
+###Wired
+
+conf t
+aaa new-model
+username admin password pass
+radius-server host 10.82.1.8 key aaaaaaaa
+ip radius source vlan 1
+aaa authorization exec default group radius
+aaa authentication login default group radius local
+line vty 0 14
+login authentication default
+end
+
+###remove radius group
+
+conf t
+no aaa new-model
+end
+
+###ticketing tool
+
+http://192.168.102.133/otrs/index.pl
+admin
+C1sc0123
+http://192.168.102.133/otrs/customer.pl
+user1
+C1sc0123
+!~it-elasticsys
+root
+C1sc0123
+ip addr
+
+
+###codes from https://github.com/samB-sfc/SECplus701/blob/main/DAY1-FNET-SCCP
+
+ 100    8478.aced.5bb7    DYNAMIC     Fa0/5
+ 100    ccd8.c1fb.02b7    DYNAMIC     Fa0/7
+
+##to check iP on fortinet
+get system interface
+
+###docker
+##pang fix pag ayaw mag install
+bcdedit /set hypervisorlaunchtype auto
+
+!@powershell
+wsl --install
+WSL.exe --update
+wsl.exe --install kali-linux
+wsl -d kali-linux
+wsl --set-default-version 2
+
+Rivan
+C1sc0123
+
+!@kali-linux
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+
+sudo apt update && sudo apt full-upgrade -y
+
+sudo apt install -y docker.io
+
+sudo apt install -y docker-compose
+sudo usermod -aG docker $USER
+sudo service docker start
+sudo docker run -it kalilinux/kali-rolling bash
+
+##Rivan(blue) will turn to root (red)
+echo "nameserver 8.8.8.8" | tee /etc/resolv.conf
+apt update
+apt full-upgrade -y
+
+apt update
+apt install -y iputils-ping
+
+ping -c 4 google.com
+ping -c 4 facebook.com
+
+##docker is temporary
